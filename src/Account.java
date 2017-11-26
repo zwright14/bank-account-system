@@ -4,7 +4,7 @@ public abstract class Account {
 	private int accountNumber;
 	private String accountName;
 	private String accountKey;
-	private float balance;
+	protected float balance;
 	
 	public Account(int num, String name, String key) {
 		accountNumber = num;
