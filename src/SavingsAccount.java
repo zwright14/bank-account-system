@@ -16,6 +16,8 @@ public class SavingsAccount extends Account {
 		if (withdrawLimit > 0) {
 			balance -= withdrawal;
 			withdrawLimit -= 1;
+			Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
+			this.addTransaction(withdrawalTransaction);
 		}
 	}
 	
