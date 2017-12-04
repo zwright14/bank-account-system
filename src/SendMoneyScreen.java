@@ -1,15 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
@@ -22,6 +21,7 @@ public class SendMoneyScreen extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private Account account;
+	private JTextField textField_2;
 	/**
 	 * Launch the application.
 	 */
@@ -50,19 +50,9 @@ public class SendMoneyScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panelLower = new JPanel();
-		contentPane.add(panelLower, BorderLayout.SOUTH);
-		
-		JLabel lblEnterAmountTo = new JLabel("Enter Amount to Send:");
-		panelLower.add(lblEnterAmountTo);
-		
-		textField_1 = new JTextField();
-		panelLower.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnSendMoney = new JButton("Enter");
-		panelLower.add(btnSendMoney);
-		
+		/**
+		 * Upper Panel of GUI
+		 */
 		JPanel panelUpper = new JPanel();
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
@@ -73,20 +63,24 @@ public class SendMoneyScreen extends JFrame {
 		});
 		panelUpper.add(btnBackButton);
 		
-		Component horizontalStrut = Box.createHorizontalStrut(100);
+		Component horizontalStrut = Box.createHorizontalStrut(90);
 		panelUpper.add(horizontalStrut);
 		
 		JLabel lblSendMoney = new JLabel("Send Money");
 		panelUpper.add(lblSendMoney);
 		
-		Component horizontalStrut_1 = Box.createHorizontalStrut(170);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(180);
 		panelUpper.add(horizontalStrut_1);
 		
+		/**
+		 * Center Panel of GUI
+		 */
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(null);
 		
 		JLabel lblAccountToSend = new JLabel("Account # to Send to:");
+		lblAccountToSend.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblAccountToSend.setBounds(30, 6, 144, 25);
 		panelCenter.add(lblAccountToSend);
 		
@@ -95,8 +89,26 @@ public class SendMoneyScreen extends JFrame {
 		panelCenter.add(textField);
 		textField.setColumns(10);
 		
+		JLabel lblDescription = new JLabel("Description: ");
+		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDescription.setBounds(30, 43, 144, 16);
+		panelCenter.add(lblDescription);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(174, 38, 231, 26);
+		panelCenter.add(textField_1);
+		
+		JLabel labelBalance = new JLabel("Current Balance: 0.0");
+		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
+		labelBalance.setBounds(30, 79, 374, 16);
+		panelCenter.add(labelBalance);
+		
+		/**
+		 * Button Panel within Center Panel
+		 */
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBounds(30, 79, 374, 77);
+		buttonPanel.setBounds(30, 107, 374, 77);
 		panelCenter.add(buttonPanel);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -124,8 +136,21 @@ public class SendMoneyScreen extends JFrame {
 		JButton button_7 = new JButton("$500");
 		buttonPanel.add(button_7);
 		
-		JLabel lblCurrentBalance = new JLabel("Current Balance: " + account.getBalance());
-		lblCurrentBalance.setBounds(30, 37, 374, 16);
-		panelCenter.add(lblCurrentBalance);
+		/**
+		 * Lower Panel of GUI
+		 */
+		JPanel panelLower = new JPanel();
+		contentPane.add(panelLower, BorderLayout.SOUTH);
+		
+		JLabel lblEnterAmountTo = new JLabel("Enter Amount to Send:");
+		panelLower.add(lblEnterAmountTo);
+		
+		textField_1 = new JTextField();
+		panelLower.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnSendMoney = new JButton("Enter");
+		panelLower.add(btnSendMoney);
+
 	}
 }
