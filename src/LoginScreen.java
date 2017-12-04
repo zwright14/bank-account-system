@@ -8,30 +8,16 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class HomeScreenGUI extends JFrame {
+public class LoginScreen extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomeScreenGUI frame = new HomeScreenGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Account account;
 
 	/**
 	 * Create the frame.
 	 */
-	public HomeScreenGUI() {
+	public LoginScreen(Account account) {
+		this.account = account;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -43,21 +29,17 @@ public class HomeScreenGUI extends JFrame {
 		list.setBounds(239, 61, 205, 211);
 		contentPane.add(list);
 		
-		JLabel lblBalance = new JLabel("Balance:");
+		JLabel lblBalance = new JLabel("Balance: " + account.getBalance());
 		lblBalance.setBounds(277, 6, 61, 16);
 		contentPane.add(lblBalance);
 		
-		JLabel lblUnknown = new JLabel("Unknown");
-		lblUnknown.setBounds(350, 6, 61, 16);
-		contentPane.add(lblUnknown);
-		
-		JLabel lblAccountNumber = new JLabel("Account Number:");
+		JLabel lblAccountNumber = new JLabel("Account Number: " + account.getNumber());
 		lblAccountNumber.setBounds(18, 6, 116, 16);
 		contentPane.add(lblAccountNumber);
 		
-		JLabel lblNewLabel = new JLabel("New Label");
-		lblNewLabel.setBounds(146, 6, 70, 16);
-		contentPane.add(lblNewLabel);
+		JLabel lblAccountName = new JLabel("Account Owner: " + account.getName());
+		lblAccountName.setBounds(146, 6, 70, 16);
+		contentPane.add(lblAccountName);
 		
 		JLabel lblTransactionLog = new JLabel("Transaction Log");
 		lblTransactionLog.setBounds(287, 33, 101, 16);
