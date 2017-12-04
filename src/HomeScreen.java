@@ -39,10 +39,14 @@ public class HomeScreen extends JFrame {
 		
 		
 		JPanel midPanel = new JPanel(new GridLayout(2,2));
-		midPanel.add(new JLabel("Account Number: "));
+		JLabel label = new JLabel("Account Number: ");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(label);
 		JTextField accountNum = new JTextField();
 		midPanel.add(accountNum);
-		midPanel.add(new JLabel("Password: "));
+		JLabel label_1 = new JLabel("Password: ");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(label_1);
 		JPasswordField accountKey = new JPasswordField();
 		midPanel.add(accountKey);
 		
@@ -72,9 +76,9 @@ public class HomeScreen extends JFrame {
 		loginPanel.add(btnSavingsLogin);
 		southPanel.add(loginPanel);
 		
-		add(northPanel, BorderLayout.NORTH);
-		add(midPanel, BorderLayout.CENTER);
-		add(southPanel, BorderLayout.SOUTH);
+		getContentPane().add(northPanel, BorderLayout.NORTH);
+		getContentPane().add(midPanel, BorderLayout.CENTER);
+		getContentPane().add(southPanel, BorderLayout.SOUTH);
 		
 		pack();
 		
