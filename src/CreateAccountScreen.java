@@ -24,14 +24,20 @@ public class CreateAccountScreen extends JFrame {
 		northPanel.add(new JLabel("Creating Account"));
 		
 		JPanel midPanel = new JPanel(new GridLayout(3,2));
-		midPanel.add(new JLabel("Account Type:"));
+		JLabel label = new JLabel("Account Type:");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(label);
 		String[] accountTypes = {"Checking", "Savings"};
 		JComboBox accountType = new JComboBox(accountTypes);
 		midPanel.add(accountType);
-		midPanel.add(new JLabel("Account Name:"));
+		JLabel label_1 = new JLabel("Account Name:");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(label_1);
 		JTextField accountName = new JTextField();
 		midPanel.add(accountName);
-		midPanel.add(new JLabel("Account Password:"));
+		JLabel label_2 = new JLabel("Password:");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(label_2);
 		JPasswordField accountKey = new JPasswordField();
 		midPanel.add(accountKey);
 		
@@ -67,9 +73,9 @@ public class CreateAccountScreen extends JFrame {
 		});
 		southPanel.add(btnBack);
 		
-		add(northPanel, BorderLayout.NORTH);
-		add(midPanel, BorderLayout.CENTER);
-		add(southPanel, BorderLayout.SOUTH);
+		getContentPane().add(northPanel, BorderLayout.NORTH);
+		getContentPane().add(midPanel, BorderLayout.CENTER);
+		getContentPane().add(southPanel, BorderLayout.SOUTH);
 		
 		pack();
 	}	

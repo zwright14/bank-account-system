@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
@@ -48,30 +51,72 @@ public class DepositScreen extends JFrame {
 		
 		JButton btn5Dollars = new JButton("$5");
 		btn5Dollars.setBounds(40, 60, 117, 29);
+		btn5Dollars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btn5Dollars);
 		
 		JButton btn10Dollars = new JButton("$10");
 		btn10Dollars.setBounds(40, 101, 117, 29);
+		btn10Dollars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btn10Dollars);
 		
 		JButton btn20Dollars = new JButton("$20");
 		btn20Dollars.setBounds(40, 142, 117, 29);
+		btn20Dollars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btn20Dollars);
 		
 		JButton btn50Dollars = new JButton("$50");
 		btn50Dollars.setBounds(287, 60, 117, 29);
+		btn50Dollars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btn50Dollars);
 		
 		JButton btn100Dollars = new JButton("$100");
 		btn100Dollars.setBounds(287, 101, 117, 29);
+		btn100Dollars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btn100Dollars);
 		
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.setBounds(287, 205, 117, 29);
+		btnEnterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btnEnterButton);
 		
 		JButton btn1000Dollars = new JButton("$1000");
 		btn1000Dollars.setBounds(287, 142, 117, 29);
+		btn1000Dollars.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		contentPane.add(btn1000Dollars);
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField("Enter an Amount:");

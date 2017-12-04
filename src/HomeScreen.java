@@ -44,9 +44,9 @@ public class HomeScreen extends JFrame {
 		midPanel.add(label);
 		JTextField accountNum = new JTextField();
 		midPanel.add(accountNum);
-		JLabel label_1 = new JLabel("Password: ");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		midPanel.add(label_1);
+		JLabel password = new JLabel("Password: ");
+		password.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(password);
 		JPasswordField accountKey = new JPasswordField();
 		midPanel.add(accountKey);
 		
