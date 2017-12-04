@@ -56,24 +56,24 @@ public class LoginScreen extends JFrame {
 		JButton btnWithdraw = new JButton("Withdraw");
 		btnWithdraw.setBounds(56, 77, 117, 29);
 		contentPane.add(btnWithdraw);
-		/*btnWithdraw.addActionListener(new ActionListener() {
+		btnWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					dispose();
 					WithdrawScreen frame = new WithdrawScreen(account);
 					frame.setVisible(true);
 			}
-		});*/
+		});
 		
 		JButton btnDeposit = new JButton("Deposit");
 		btnDeposit.setBounds(56, 118, 117, 29);
 		contentPane.add(btnDeposit);
-		/*btnDeposit.addActionListener(new ActionListener() {
+		btnDeposit.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 				dispose();
 				DepositScreen frame = new DepositScreen(account);
 				frame.setVisible(true);
 			}
-		});*/
+		});
 		
 		JButton btnPayBill = new JButton("Pay Bill");
 		btnPayBill.setBounds(56, 159, 117, 29);
@@ -89,12 +89,12 @@ public class LoginScreen extends JFrame {
 		JButton btnSendMoney = new JButton("Send Money");
 		btnSendMoney.setBounds(56, 200, 117, 29);
 		contentPane.add(btnSendMoney);
-		/*btnSendMoney.addActionListener(new ActionListener() {
+		btnSendMoney.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 				dispose();
 				SendMoneyScreen frame = new SendMoneyScreen(account);
 				frame.setVisible(true);
 			}
-		});*/
+		});
 	}
 }

@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class SendMoneyScreen extends JFrame {
 
@@ -63,8 +66,21 @@ public class SendMoneyScreen extends JFrame {
 		JPanel panelUpper = new JPanel();
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
+		JButton btnBackButton = new JButton("Back");
+		btnBackButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panelUpper.add(btnBackButton);
+		
+		Component horizontalStrut = Box.createHorizontalStrut(100);
+		panelUpper.add(horizontalStrut);
+		
 		JLabel lblSendMoney = new JLabel("Send Money");
 		panelUpper.add(lblSendMoney);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(170);
+		panelUpper.add(horizontalStrut_1);
 		
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
