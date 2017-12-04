@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class LoginScreen extends JFrame {
 
@@ -30,19 +31,21 @@ public class LoginScreen extends JFrame {
 		contentPane.add(list);
 		
 		JLabel lblBalance = new JLabel("Balance: " + account.getBalance());
-		lblBalance.setBounds(277, 6, 61, 16);
+		lblBalance.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBalance.setBounds(235, 6, 209, 16);
 		contentPane.add(lblBalance);
 		
 		JLabel lblAccountNumber = new JLabel("Account Number: " + account.getNumber());
-		lblAccountNumber.setBounds(18, 6, 116, 16);
+		lblAccountNumber.setBounds(21, 6, 128, 16);
 		contentPane.add(lblAccountNumber);
 		
 		JLabel lblAccountName = new JLabel("Account Owner: " + account.getName());
-		lblAccountName.setBounds(146, 6, 70, 16);
+		lblAccountName.setBounds(21, 33, 187, 16);
 		contentPane.add(lblAccountName);
 		
 		JLabel lblTransactionLog = new JLabel("Transaction Log");
-		lblTransactionLog.setBounds(287, 33, 101, 16);
+		lblTransactionLog.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTransactionLog.setBounds(239, 33, 205, 16);
 		contentPane.add(lblTransactionLog);
 		
 		JButton btnWithdraw = new JButton("Withdraw");
