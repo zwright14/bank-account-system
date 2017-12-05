@@ -19,6 +19,10 @@ public class SavingsAccount extends Account {
 			Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
 			this.addTransaction(withdrawalTransaction);
 		}
+		if (withdrawLimit == 0) {
+			System.out.println("ERROR: No more withdrawals allowed.");
+			return null;
+		}
 	}
 	
 	public void resetLimit() {
