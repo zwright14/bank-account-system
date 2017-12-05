@@ -44,15 +44,9 @@ public class HomeScreen extends JFrame {
 		midPanel.add(label);
 		JTextField accountNum = new JTextField();
 		midPanel.add(accountNum);
-<<<<<<< Updated upstream
 		JLabel password = new JLabel("Password: ");
 		password.setHorizontalAlignment(SwingConstants.CENTER);
 		midPanel.add(password);
-=======
-		JLabel label_1 = new JLabel("Password: ");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		midPanel.add(label_1);
->>>>>>> Stashed changes
 		JPasswordField accountKey = new JPasswordField();
 		midPanel.add(accountKey);
 		
