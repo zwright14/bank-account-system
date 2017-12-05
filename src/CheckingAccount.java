@@ -5,7 +5,7 @@ public class CheckingAccount extends Account {
 		super(num, name, key);
 	}
 	
-	public void sendCheck(float amount, Account otherAccount) {
+	public void sendCheck(double amount, Account otherAccount) {
 		this.withdrawMoney(amount);
 		otherAccount.depositMoney(amount);
 		Transaction sendTransaction = new Transaction(amount, "Sent Check To: " + otherAccount.getName());

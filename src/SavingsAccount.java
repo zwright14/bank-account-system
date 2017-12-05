@@ -12,7 +12,7 @@ public class SavingsAccount extends Account {
 		return withdrawLimit; 
 	}
 	
-	public void withdrawMoney(float withdrawal) {
+	public void withdrawMoney(double withdrawal) {
 		if (withdrawLimit > 0) {
 			balance -= withdrawal;
 			withdrawLimit -= 1;
@@ -21,7 +21,6 @@ public class SavingsAccount extends Account {
 		}
 		if (withdrawLimit == 0) {
 			System.out.println("ERROR: No more withdrawals allowed.");
-			return null;
 		}
 	}
 	

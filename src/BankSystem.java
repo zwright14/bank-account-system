@@ -11,6 +11,12 @@ public class BankSystem {
 		savingsAccounts = new ArrayList<SavingsAccount>();
 	}
 	
+	//getters
+	
+	public int getAccountNum() {
+		return accountNum;
+	}
+	
 	public void createSavingsAccount(String name, String key) {
 		SavingsAccount newAccount = new SavingsAccount(accountNum, name, key);
 		savingsAccounts.add(newAccount);
@@ -29,14 +35,7 @@ public class BankSystem {
 				if (key.equals(account.getKey())) {
 					return account;
 				}
-				else {
-					System.out.println("ERROR. Incorrect Password.");
-					return null;
-				}
 			}
-			else {
-				System.out.println("ERROR. Account number does not exist.");
-				return null;
 		}
 		return null;
 	}
@@ -47,14 +46,7 @@ public class BankSystem {
 				if (key.equals(account.getKey())) {
 					return account;
 				}
-				else {
-					System.out.println("ERROR. Incorrect Password.");
-					return null;
-				}
 			}
-			else {
-				System.out.println("ERROR. Account number does not exist.");
-				return null;
 		}
 		return null;
 	}

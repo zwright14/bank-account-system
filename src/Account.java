@@ -6,13 +6,14 @@ public abstract class Account {
 	private String accountName;
 	private String accountKey;
 	private ArrayList<Transaction> transactionLog;
-	protected float balance;
+	protected double balance;
 	
 	
 	public Account(int num, String name, String key) {
 		accountNumber = num;
 		accountName = name;
 		accountKey = key;
+		transactionLog = new ArrayList<Transaction>();
 		balance = 0;
 	}
 	
@@ -29,7 +30,7 @@ public abstract class Account {
 		return accountKey;
 	}
 	
-	public float getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 	
@@ -55,7 +56,7 @@ public abstract class Account {
 	}
 	
 	//Transactions
-	public void withdrawMoney(float withdrawal) {
+	public void withdrawMoney(double withdrawal) {
 		if (balance < withdrawal) {
 			System.out.println("ERROR. Insufficient funds to complete withdrawal.");
 		}	
@@ -67,7 +68,7 @@ public abstract class Account {
 
 	}
 	
-	public void depositMoney(float deposit) {
+	public void depositMoney(double deposit) {
 		balance += deposit;
 		Transaction depositTransaction = new Transaction(deposit, "Deposited Money");
 		this.addTransaction(depositTransaction);

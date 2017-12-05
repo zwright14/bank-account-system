@@ -23,7 +23,13 @@ public class CreateAccountScreen extends JFrame {
 		JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		northPanel.add(new JLabel("Creating Account"));
 		
-		JPanel midPanel = new JPanel(new GridLayout(3,2));
+		JPanel midPanel = new JPanel(new GridLayout(4,2));
+		JLabel accountLabel = new JLabel("Account Number: ");
+		accountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(accountLabel);
+		JLabel accountNum = new JLabel(Integer.toString(bank.getAccountNum()));
+		accountNum.setHorizontalAlignment(SwingConstants.CENTER);
+		midPanel.add(accountNum);
 		JLabel label = new JLabel("Account Type:");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		midPanel.add(label);

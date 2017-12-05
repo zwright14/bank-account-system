@@ -20,21 +20,6 @@ public class DepositScreen extends JFrame {
 	private JPanel contentPane;
 	private Account account;
 	private JTextField textField;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DepositScreen frame = new DepositScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.
@@ -84,7 +69,7 @@ public class DepositScreen extends JFrame {
 		panelCenter.add(textField);
 		textField.setColumns(10);
 		
-		JLabel labelBalance = new JLabel("Current Balance: 0.0");
+		JLabel labelBalance = new JLabel("Current Balance: $" + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 6, 374, 16);
 		panelCenter.add(labelBalance);
@@ -121,8 +106,8 @@ public class DepositScreen extends JFrame {
 		JButton button5Dollars = new JButton("$5");
 		button5Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
 				account.depositMoney(5);
+				labelBalance.setText("Current Balance: $" + account.getBalance());
 				//transaction log?
 			}
 		});
