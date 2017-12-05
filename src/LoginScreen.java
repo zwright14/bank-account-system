@@ -8,12 +8,9 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-<<<<<<< Updated upstream
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
->>>>>>> Stashed changes
 
 public class LoginScreen extends JFrame {
 
@@ -47,10 +44,7 @@ public class LoginScreen extends JFrame {
 		contentPane.add(lblAccountName);
 		
 		JLabel lblTransactionLog = new JLabel("Transaction Log");
-<<<<<<< Updated upstream
 		lblTransactionLog.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-=======
->>>>>>> Stashed changes
 		lblTransactionLog.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTransactionLog.setBounds(239, 33, 205, 16);
 		contentPane.add(lblTransactionLog);
