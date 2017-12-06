@@ -19,7 +19,8 @@ public class DepositScreen extends JFrame {
 
 	private JPanel contentPane;
 	private Account account;
-	private JTextField textField;
+	private JTextField descriptionField;
+	private JTextField amountField;
 
 	/**
 	 * Create the frame.
@@ -64,10 +65,10 @@ public class DepositScreen extends JFrame {
 		panelCenter.add(lblDescription);
 		
 		//Goes with Description
-		textField = new JTextField();
-		textField.setBounds(118, 34, 286, 61);
-		panelCenter.add(textField);
-		textField.setColumns(10);
+		descriptionField = new JTextField();
+		descriptionField.setBounds(118, 34, 286, 61);
+		panelCenter.add(descriptionField);
+		descriptionField.setColumns(10);
 		
 		JLabel labelBalance = new JLabel("Current Balance: $" + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,7 +89,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(1);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button1Dollar);
@@ -98,7 +100,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(2);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button2Dollars);
@@ -106,9 +109,10 @@ public class DepositScreen extends JFrame {
 		JButton button5Dollars = new JButton("$5");
 		button5Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				account.depositMoney(5);
-				labelBalance.setText("Current Balance: $" + account.getBalance());
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button5Dollars);
@@ -118,7 +122,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(10);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button10Dollars);
@@ -128,7 +133,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(20);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button20Dollars);
@@ -138,7 +144,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(50);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button50Dollars);
@@ -148,7 +155,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(100);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button100Dollars);
@@ -158,7 +166,8 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(500);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button500Dollars);	
@@ -173,16 +182,18 @@ public class DepositScreen extends JFrame {
 		JLabel lblEnterAmount = new JLabel("Enter Amount to Deposit:");
 		panelLower.add(lblEnterAmount);
 		
-		textField = new JTextField();
-		panelLower.add(textField);
-		textField.setColumns(10);
+		amountField = new JTextField();
+		panelLower.add(amountField);
+		amountField.setColumns(10);
 		
+		//cant get this to work correctly
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				//account.depositMoney(5);
-				//transaction log?
+				account.depositMoney(Double.valueOf(amountField.getText()));
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		panelLower.add(btnEnterButton);

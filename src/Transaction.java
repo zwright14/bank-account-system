@@ -21,7 +21,7 @@ public class Transaction {
 	//Print Transaction
 	public String toString() {
 		if (value>=0) {
-			return "$" + value + description;
+			return "$" + value + "  " + description;
 		}
 		else {
 			return "-$" + Math.abs(value) + description;

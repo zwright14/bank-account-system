@@ -30,7 +30,7 @@ public class LoginScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBalance = new JLabel("Balance: " + account.getBalance());
+		JLabel lblBalance = new JLabel("Balance: $" + account.getBalance());
 		lblBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBalance.setBounds(235, 6, 209, 16);
 		contentPane.add(lblBalance);
@@ -49,7 +49,7 @@ public class LoginScreen extends JFrame {
 		lblTransactionLog.setBounds(239, 33, 205, 16);
 		contentPane.add(lblTransactionLog);
 		
-		JList TransactionList = new JList();
+		JList TransactionList = new JList(account.getTransactionLog().toArray());
 		TransactionList.setBounds(239, 61, 205, 211);
 		contentPane.add(TransactionList);
 		

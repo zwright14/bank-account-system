@@ -21,22 +21,6 @@ public class WithdrawScreen extends JFrame {
 	private JTextField textEnterAmount;
 	
 	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WithdrawScreen frame = new WithdrawScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
 	 * Create the frame.
 	 */
 	/*public HomeScreen(BankSystem bank) {
@@ -102,11 +86,10 @@ public class WithdrawScreen extends JFrame {
 		panelCenter.add(textDescription);
 		textDescription.setColumns(10);
 		
-		JLabel labelBalance = new JLabel("Current Balance: 0.0");
+		JLabel labelBalance = new JLabel("Current Balance: $" + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 6, 374, 16);
 		panelCenter.add(labelBalance);
-		
 		
 		/**
 		 * Button Panel within Center Panel of GUI
@@ -121,7 +104,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(1);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button1Dollar);
@@ -131,7 +115,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(2);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button2Dollars);
@@ -141,7 +126,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(5);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button5Dollars);
@@ -151,7 +137,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(10);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button10Dollars);
@@ -161,7 +148,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(20);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button20Dollars);
@@ -171,7 +159,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(50);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button50Dollars);
@@ -181,7 +170,8 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(100);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button100Dollars);
@@ -191,12 +181,13 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(500);
-				//transaction log?
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		buttonPanel.add(button500Dollars);	
 		
-		
+
 		/**
 		 * Lower Panel of GUI
 		 */
@@ -214,8 +205,9 @@ public class WithdrawScreen extends JFrame {
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				//account.withdrawMoney();
-				//transaction log?
+				account.withdrawMoney(Double.valueOf(textEnterAmount.getText()));
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
 			}
 		});
 		panelLower.add(btnEnterButton);
