@@ -6,7 +6,7 @@ public abstract class Account {
 	private String accountName;
 	private String accountKey;
 	private ArrayList<Transaction> transactionLog;
-	protected double balance;
+	private double balance;
 	
 	
 	public Account(int num, String name, String key) {
@@ -57,16 +57,10 @@ public abstract class Account {
 	
 	//Transactions
 	public void withdrawMoney(double withdrawal) {
-		if (balance < withdrawal) {
-			System.out.println("ERROR. Insufficient funds to complete withdrawal.");
-		}	
-		if (balance >= withdrawal) {
-			balance -= withdrawal;
-			Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
-			this.addTransaction(withdrawalTransaction);
+		balance = (balance*1000 - withdrawal*1000)/1000;
+		Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
+		this.addTransaction(withdrawalTransaction);
 		}
-
-	}
 	
 	public void depositMoney(double deposit) {
 		balance += deposit;
@@ -74,4 +68,21 @@ public abstract class Account {
 		this.addTransaction(depositTransaction);
 	}
 
+	public boolean withdrawalIsPossible(double withdrawal) {
+		if (balance >= withdrawal && withdrawal > 0 && (withdrawal*100)%1==0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean depositIsPossible(double deposit) {
+		if (deposit>0 && (deposit*100)%1==0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

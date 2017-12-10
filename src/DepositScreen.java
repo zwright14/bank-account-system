@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -190,10 +192,23 @@ public class DepositScreen extends JFrame {
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.depositMoney(Double.valueOf(amountField.getText()));
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				try {
+				Double val = Double.valueOf(amountField.getText());
+				if (account.depositIsPossible(val)) {
+					dispose();
+					account.depositMoney(val);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "The value entered can't be deposited!", "Error", JOptionPane.ERROR_MESSAGE);
+					amountField.setText("");
+				}
+				}
+				catch(NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "The value entered can't be deposited!", "Error", JOptionPane.ERROR_MESSAGE);
+					amountField.setText("");
+				}
 			}
 		});
 		panelLower.add(btnEnterButton);

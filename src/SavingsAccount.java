@@ -12,19 +12,21 @@ public class SavingsAccount extends Account {
 		return withdrawLimit; 
 	}
 	
-	public void withdrawMoney(double withdrawal) {
-		if (withdrawLimit > 0) {
-			balance -= withdrawal;
-			withdrawLimit -= 1;
-			Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
-			this.addTransaction(withdrawalTransaction);
+	public void resetWithdrawalLimit() {
+		withdrawLimit = 6;
+	}
+	
+	public boolean withdrawalIsPossible(double withdrawal) {
+		if (withdrawLimit>0) {
+			return super.withdrawalIsPossible(withdrawal);
 		}
-		if (withdrawLimit == 0) {
-			System.out.println("ERROR: No more withdrawals allowed.");
+		else {
+			return false;
 		}
 	}
 	
-	public void resetLimit() {
-		withdrawLimit = 6;
+	public void withdrawMoney(double withdrawal) {
+			super.withdrawMoney(withdrawal);
+			withdrawLimit -= 1;
 	}
 }

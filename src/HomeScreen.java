@@ -56,10 +56,19 @@ public class HomeScreen extends JFrame {
 		JButton btnCheckingLogin = new JButton("Login To Checking Account");
 		btnCheckingLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(accountNum.getText());
+				String password = new String(accountKey.getPassword());
+				if (bank.checkingAccountExists(num, password)) {
 				dispose();
-				Account account = bank.loginToChecking(Integer.parseInt(accountNum.getText()), accountKey.getText());
+				Account account = bank.loginToChecking(num, password);
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "That account number and password don't exist in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);
+					accountNum.setText("");
+					accountKey.setText("");
+				}
 			}
 		});
 		loginPanel.add(btnCheckingLogin);
@@ -67,10 +76,20 @@ public class HomeScreen extends JFrame {
 		JButton btnSavingsLogin = new JButton("Login To Savings Account");
 		btnSavingsLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int num = Integer.parseInt(accountNum.getText());
+				String password = new String(accountKey.getPassword());
+				if (bank.savingsAccountExist(num, password)) {
 				dispose();
-				Account account = bank.loginToSavings(Integer.parseInt(accountNum.getText()), accountKey.getText());
+				Account account = bank.loginToSavings(num, password);
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "That account number and password don't exist in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);
+					accountNum.setText("");
+					accountKey.setText("");
+					
+				}
 			}
 		});
 		loginPanel.add(btnSavingsLogin);

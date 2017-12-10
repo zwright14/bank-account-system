@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Box;
@@ -19,27 +21,6 @@ public class WithdrawScreen extends JFrame {
 	private Account account;
 	private JTextField textDescription;
 	private JTextField textEnterAmount;
-	
-	/**
-	 * Create the frame.
-	 */
-	/*public HomeScreen(BankSystem bank) {
-		this.bank = bank;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel northPanel = new JPanel(new GridLayout(2,1));
-		JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lblTheNrcBank = new JLabel("The NRC Bank System");
-		labelPanel.add(lblTheNrcBank);
-		JPanel accountPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JButton btnCreateAccount = new JButton("Create Account");
-		btnCreateAccount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					dispose();
-					CreateAccountScreen frame = new CreateAccountScreen(bank);
-					frame.setVisible(true);
-			}
-		});*/ 
 	
 	public WithdrawScreen(Account account) {
 		this.account = account;
@@ -102,10 +83,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button1Dollar = new JButton("$1");
 		button1Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(1);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(1)) {
+					dispose();
+					account.withdrawMoney(1);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button1Dollar);
@@ -113,10 +100,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button2Dollars = new JButton("$2");
 		button2Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(2);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(2)) {
+					dispose();
+					account.withdrawMoney(2);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button2Dollars);
@@ -124,10 +117,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button5Dollars = new JButton("$5");
 		button5Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(5);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(5)) {
+					dispose();
+					account.withdrawMoney(5);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button5Dollars);
@@ -146,10 +145,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button20Dollars = new JButton("$20");
 		button20Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(20);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(20)) {
+					dispose();
+					account.withdrawMoney(20);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button20Dollars);
@@ -157,10 +162,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button50Dollars = new JButton("$50");
 		button50Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(50);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(50)) {
+					dispose();
+					account.withdrawMoney(50);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button50Dollars);
@@ -168,10 +179,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button100Dollars = new JButton("$100");
 		button100Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(100);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(100)) {
+					dispose();
+					account.withdrawMoney(100);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button100Dollars);
@@ -179,10 +196,16 @@ public class WithdrawScreen extends JFrame {
 		JButton button500Dollars = new JButton("$500");
 		button500Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(500);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(500)) {
+					dispose();
+					account.withdrawMoney(500);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button500Dollars);	
@@ -204,10 +227,23 @@ public class WithdrawScreen extends JFrame {
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.withdrawMoney(Double.valueOf(textEnterAmount.getText()));
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+				try {
+					Double val = Double.valueOf(textEnterAmount.getText());
+					if (account.withdrawalIsPossible(val)) {
+						dispose();
+						account.withdrawMoney(val);
+						LoginScreen frame = new LoginScreen(account);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "That number entered can't be withdrawn!", "Error", JOptionPane.ERROR_MESSAGE);
+						textEnterAmount.setText("");
+					}
+				}
+				catch (NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "That number entered can't be withdrawn!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		panelLower.add(btnEnterButton);

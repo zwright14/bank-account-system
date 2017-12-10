@@ -12,11 +12,11 @@ public class BankSystem {
 	}
 	
 	//getters
-	
 	public int getAccountNum() {
 		return accountNum;
 	}
 	
+	//create accounts
 	public void createSavingsAccount(String name, String key) {
 		SavingsAccount newAccount = new SavingsAccount(accountNum, name, key);
 		savingsAccounts.add(newAccount);
@@ -29,6 +29,7 @@ public class BankSystem {
 		accountNum++;
 	}
 	
+	//login to accounts
 	public Account loginToChecking(int num, String key) {
 		for (Account account:checkingAccounts) {
 			if (account.getNumber() == num) {
@@ -50,4 +51,29 @@ public class BankSystem {
 		}
 		return null;
 	}
+
+	//check for accounts
+	public boolean savingsAccountExist(int num, String key) {
+		for (Account account:savingsAccounts) {
+			if (account.getNumber() == num) {
+				if (key.equals(account.getKey())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkingAccountExists(int num, String key) {
+		for (Account account:checkingAccounts) {
+			if (account.getNumber() == num) {
+				if (key.equals(account.getKey())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 }
+	
