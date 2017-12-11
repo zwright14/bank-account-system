@@ -7,12 +7,8 @@ public class CheckingAccount extends Account {
 	
 	public void sendCheck(double amount, Account account) {
 		Account otherAccount = account;
-		this.withdrawMoney(amount, "");
-		otherAccount.depositMoney(amount, "");
-		Transaction sendTransaction = new Transaction(amount, "Sent Check To: " + otherAccount.getName());
-		this.addTransaction(sendTransaction);
-		Transaction receiveTransaction = new Transaction(amount, "Received Check From: " + this.getName());
-		otherAccount.addTransaction(receiveTransaction);
+		this.withdrawMoney(amount, "Sent Check To: " + otherAccount.getName());
+		otherAccount.depositMoney(amount, "Received Check From: " + this.getName());
 	}	
 	
 	public void payBill(String bill) {

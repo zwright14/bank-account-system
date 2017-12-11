@@ -52,7 +52,7 @@ public abstract class Account {
 	}
 	
 	public void addTransaction(Transaction log) {
-		transactionLog.add(log);
+		transactionLog.add(0,log);
 	}
 	
 	//Transactions

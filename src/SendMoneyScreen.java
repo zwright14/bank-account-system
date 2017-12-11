@@ -105,10 +105,15 @@ public class SendMoneyScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
 					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
-						//account.sendCheck(1, otherAccount);
+						account.sendCheck(1, otherAccount);
 						LoginScreen frame = new LoginScreen(account, bank);
 						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
 					}
 				}
 				else {
@@ -119,11 +124,33 @@ public class SendMoneyScreen extends JFrame {
 		});
 		buttonPanel.add(buttonOneDollar);
 		
-		JButton button = new JButton("$2");
-		buttonPanel.add(button);
+		JButton buttonTwoDollar = new JButton("$2");
+		buttonTwoDollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(1, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
+		buttonPanel.add(buttonTwoDollar);
 		
-		JButton button_1 = new JButton("$5");
-		buttonPanel.add(button_1);
+		JButton buttonFiveDollar = new JButton("$5");
+		
+		buttonPanel.add(buttonFiveDollar);
 		
 		JButton button_2 = new JButton("$10");
 		buttonPanel.add(button_2);

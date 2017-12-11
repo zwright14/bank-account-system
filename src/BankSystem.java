@@ -89,11 +89,19 @@ public class BankSystem {
 		return false;
 	}
 	
-	/*public Account findOtherAccount(int num) {
-		if (doesAccountExist(num)) {
-			Account other = Account(num); 
+	public Account findAccount(int num) {
+		for (Account account:checkingAccounts) {
+			if (account.getNumber() == num) {
+				return account;
+			}
+		} for (Account account:savingsAccounts) {
+			if (account.getNumber() == num) {
+				return account;
+			}
 		}
-	}*/
+		return null;
+	}
 	
+		
 }
 	

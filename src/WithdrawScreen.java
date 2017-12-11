@@ -16,28 +16,40 @@ import javax.swing.SwingConstants;
 
 public class WithdrawScreen extends JFrame {
 
+	//initialize private variables
 	private JPanel contentPane;
 	private BankSystem bank;
 	private Account account;
 	private JTextField textDescription;
 	private JTextField textEnterAmount;
 	
+	/**
+	 * Create the frame
+	 * Takes the account that is logged in and the BankSystem
+	 */
 	public WithdrawScreen(Account account, BankSystem bank) {
+		//init account and bank
 		this.account = account;
 		this.bank = bank;
+		//set window conditions
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		
+		//set contentPane to a panel and initialize layout/border
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		/**
-		 * Upper Panel of GUI
+		 * Upper Panel of GUI 
+		 * Labels and a back button
+		 * Similar to other Screens, googled Strut's for better UI. 
 		 **/
 		JPanel panelUpper = new JPanel();
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
+		//create back button with action listener to return to previous screen
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -48,6 +60,7 @@ public class WithdrawScreen extends JFrame {
 		});
 		panelUpper.add(btnBack);
 		
+		//googled for better UI
 		Component horizontalStrut_1 = Box.createHorizontalStrut(85);
 		panelUpper.add(horizontalStrut_1);
 		
@@ -60,6 +73,8 @@ public class WithdrawScreen extends JFrame {
 		
 		/**
 		 * Center Panel of GUI
+		 * Creates another panel to hold the buttons within it on the lower edge
+		 * Adds labels, balance display, and a text field to allow user to type description
 		 */
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
@@ -75,6 +90,7 @@ public class WithdrawScreen extends JFrame {
 		panelCenter.add(textDescription);
 		textDescription.setColumns(10);
 		
+		//displays current balance within label
 		JLabel labelBalance = new JLabel("Current Balance: $" + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 6, 374, 16);
@@ -82,12 +98,18 @@ public class WithdrawScreen extends JFrame {
 		
 		/**
 		 * Button Panel within Center Panel of GUI
+		 * Creates a panel with flowLayout for the buttons to be evenly spaced and organized
+		 * One after the other
+		 * Like an ATM, quick amounts to deposit
+		 * All buttons perform same action with different amounts 
+		 * Design Decision to go back to previous screen after Withdrawal
 		 */
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBounds(30, 107, 374, 77);
 		panelCenter.add(buttonPanel);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		//add buttons and their ActionListener actions so that when pressed they do something
 		JButton button1Dollar = new JButton("$1");
 		button1Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -221,6 +243,8 @@ public class WithdrawScreen extends JFrame {
 
 		/**
 		 * Lower Panel of GUI
+		 * Add a label and textField to enter in your own deposit amount.
+		 * Button has try/catch to verify user entered correct data. 
 		 */
 		JPanel panelLower = new JPanel();
 		contentPane.add(panelLower, BorderLayout.SOUTH);
@@ -235,8 +259,10 @@ public class WithdrawScreen extends JFrame {
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//try and catch if user enters non-double
 				try {
 					Double val = Double.valueOf(textEnterAmount.getText());
+					//perform withdrawal if balance afterwards > 0 and round to 2 decimals. 
 					if (account.withdrawalIsPossible(val)) {
 						dispose();
 						account.withdrawMoney(val, textDescription.getText());

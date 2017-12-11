@@ -18,7 +18,8 @@ import java.awt.Component;
 import javax.swing.Box;
 
 public class DepositScreen extends JFrame {
-
+	
+	//initialize private variables
 	private JPanel contentPane;
 	private Account account;
 	private JTextField descriptionField;
@@ -26,50 +27,60 @@ public class DepositScreen extends JFrame {
 	private BankSystem bank;
 
 	/**
-	 * Create the frame.
+	 * Create the frame
+	 * Takes the account that is logged in and the BankSystem
 	 */
 	public DepositScreen(Account account, BankSystem bank) {
+		//init account and bank
 		this.account = account;
 		this.bank = bank;
+		//set window conditions
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		
+		//set contentPane to a panel and initialize layout/border
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		/**
-		 * Upper Panel of GUI
+		 * Upper Panel of GUI - Labels and a back button (and separation struts) 
 		 **/
 		JPanel panelUpper = new JPanel();
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
+		//create back button that returns to previous screen 
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				dispose(); //dump current screen
 				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
 		panelUpper.add(btnBack);
 		
+		//couldn't figure out how to correctly place items, googled this
 		Component horizontalStrut_1 = Box.createHorizontalStrut(85);
 		panelUpper.add(horizontalStrut_1);
 		
 		JLabel lblDepositMoney = new JLabel("Deposit Money");
 		panelUpper.add(lblDepositMoney);
 		
+		//couldn't figure out how to correctly place items, googled this
 		Component horizontalStrut = Box.createHorizontalStrut(165);
 		panelUpper.add(horizontalStrut);
 		
 		
 		/**
 		 * Center Panel of GUI
+		 * Creates another panel to hold the buttons within it on the lower edge
+		 * Adds labels, balance display, and a text field to allow user to type description
 		 */
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
-		panelCenter.setLayout(null);
+		panelCenter.setLayout(null); //set to null because other panel is inside of it (looked better setting bounds)
 		
 		JLabel lblDescription = new JLabel("Description: ");
 		lblDescription.setBounds(30, 34, 81, 16);
@@ -81,6 +92,7 @@ public class DepositScreen extends JFrame {
 		panelCenter.add(descriptionField);
 		descriptionField.setColumns(10);
 		
+		//uses current account
 		JLabel labelBalance = new JLabel("Current Balance: $" + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 6, 374, 16);
@@ -89,16 +101,22 @@ public class DepositScreen extends JFrame {
 		
 		/**
 		 * Button Panel within Center Panel of GUI
+		 * Creates a panel with flowLayout for the buttons to be evenly spaced and organized
+		 * One after the other
+		 * Like an ATM, quick amounts to deposit
+		 * All buttons perform same action with different amounts
+		 * Design Decision to go back to previous screen after Deposit 
 		 */
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBounds(30, 107, 374, 77);
 		panelCenter.add(buttonPanel);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		//add buttons and their ActionListener actions so that when pressed they do something
 		JButton button1Dollar = new JButton("$1");
 		button1Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				dispose(); //design choice to bring back to previous screen after deposit completion
 				account.depositMoney(1, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
@@ -109,7 +127,7 @@ public class DepositScreen extends JFrame {
 		JButton button2Dollars = new JButton("$2");
 		button2Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				dispose(); 
 				account.depositMoney(2, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
@@ -186,6 +204,8 @@ public class DepositScreen extends JFrame {
 		
 		/**
 		 * Lower Panel of GUI
+		 * Add a label and textField to enter in your own deposit amount.
+		 * Button has try/catch to verify user entered correct data. 
 		 */
 		JPanel panelLower = new JPanel();
 		contentPane.add(panelLower, BorderLayout.SOUTH);
@@ -197,12 +217,14 @@ public class DepositScreen extends JFrame {
 		panelLower.add(amountField);
 		amountField.setColumns(10);
 		
-		//cant get this to work correctly
+		
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//try and catch if the user enters in a non-double #
 				try {
 				Double val = Double.valueOf(amountField.getText());
+				//perform deposit if possible (rounded to 2 decimals)
 				if (account.depositIsPossible(val)) {
 					dispose();
 					account.depositMoney(val, descriptionField.getText());
