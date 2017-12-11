@@ -25,8 +25,10 @@ public class SavingsAccount extends Account {
 		}
 	}
 	
-	public void withdrawMoney(double withdrawal) {
-			super.withdrawMoney(withdrawal);
+	public void withdrawMoney(double withdrawal, String description) {
+		if (description.isEmpty()) {
+			super.withdrawMoney(withdrawal, description);
 			withdrawLimit -= 1;
+		}
 	}
 }

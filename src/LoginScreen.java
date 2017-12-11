@@ -3,14 +3,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class LoginScreen extends JFrame {
 
@@ -49,9 +52,11 @@ public class LoginScreen extends JFrame {
 		lblTransactionLog.setBounds(239, 33, 205, 16);
 		contentPane.add(lblTransactionLog);
 		
+		JScrollPane scrollPane = new JScrollPane();
 		JList TransactionList = new JList(account.getTransactionLog().toArray());
-		TransactionList.setBounds(239, 61, 205, 211);
-		contentPane.add(TransactionList);
+		scrollPane.setBounds(239, 61, 205, 211);
+		scrollPane.setViewportView(TransactionList);
+		contentPane.add(scrollPane);
 		
 		JButton btnWithdraw = new JButton("Withdraw");
 		btnWithdraw.setBounds(56, 77, 117, 29);
@@ -77,24 +82,63 @@ public class LoginScreen extends JFrame {
 		
 		JButton btnPayBill = new JButton("Pay Bill");
 		btnPayBill.setBounds(56, 159, 117, 29);
-		contentPane.add(btnPayBill);
-		/*btnPayBill.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-				dispose();
-				PayBillScreen frame = new PayBillScreen(account);
-				frame.setVisible(true);
+		btnPayBill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (bank.checkingAccounts.contains(account)) {
+					dispose();
+					//PayBillScreen frame = new PayBillScreen(account);
+					//frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "This action cannot be performed for Savings Account", "Error", JOptionPane.ERROR_MESSAGE);
+					System.out.println("this isnt working");
+				}
 			}
-		});*/
+		});
+		contentPane.add(btnPayBill);
 		
 		JButton btnSendMoney = new JButton("Send Money");
 		btnSendMoney.setBounds(56, 200, 117, 29);
-		contentPane.add(btnSendMoney);
 		btnSendMoney.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
+				if (bank.checkingAccounts.contains(account)) {
+					dispose();
+					//SendMoneyScreen frame = new SendMoneyScreen(account);
+					//frame.setVisible(true);
+				}
+				else {
+					//this doesnt work and idk why
+					JOptionPane.showMessageDialog(null, "This action cannot be performed for Savings Account", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		contentPane.add(btnSendMoney);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(6, 243, 76, 29);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
-				SendMoneyScreen frame = new SendMoneyScreen(account);
+				HomeScreen frame = new HomeScreen(bank);
 				frame.setVisible(true);
 			}
 		});
+		contentPane.add(btnLogout);
+		
+		JButton LimitResetbutton = new JButton("Reset Limit");
+		LimitResetbutton.setBounds(132, 241, 95, 29);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (bank.savingsAccounts.contains(account)) {
+				//SavingsAccount saving = SavingsAccount(account.getNumber(), account.getName(), account.getKey());
+				//account.resetWithdrawalLimit();
+				}
+				else {
+					//this doesnt work and idk why
+					JOptionPane.showMessageDialog(null, "This action cannot be performed for Savings Account", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			});
+		contentPane.add(LimitResetbutton);
 	}
 }

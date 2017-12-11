@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
@@ -16,25 +17,9 @@ public class PayBillScreen extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PayBillScreen frame = new PayBillScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public PayBillScreen() {
+	public PayBillScreen(CheckingAccount account) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,11 +36,20 @@ public class PayBillScreen extends JFrame {
 		contentPane.add(btnElectricBill);
 		
 		JButton btnMortgage = new JButton("Mortgage");
+		btnMortgage.setBounds(40, 195, 117, 29);
 		btnMortgage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1000)) {
+					dispose();
+					account.payBill("Mortgage");
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
-		btnMortgage.setBounds(40, 195, 117, 29);
 		contentPane.add(btnMortgage);
 		
 		JButton btnCreditCardBill = new JButton("Credit Card");

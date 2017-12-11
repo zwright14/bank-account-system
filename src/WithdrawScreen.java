@@ -38,6 +38,13 @@ public class WithdrawScreen extends JFrame {
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
+			}
+		});
 		panelUpper.add(btnBack);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(85);
@@ -85,7 +92,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
 					dispose();
-					account.withdrawMoney(1);
+					account.withdrawMoney(1, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -102,7 +109,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(2)) {
 					dispose();
-					account.withdrawMoney(2);
+					account.withdrawMoney(2, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -119,7 +126,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(5)) {
 					dispose();
-					account.withdrawMoney(5);
+					account.withdrawMoney(5, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -135,7 +142,7 @@ public class WithdrawScreen extends JFrame {
 		button10Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.withdrawMoney(10);
+				account.withdrawMoney(10, textDescription.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -147,7 +154,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(20)) {
 					dispose();
-					account.withdrawMoney(20);
+					account.withdrawMoney(20, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -164,7 +171,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(50)) {
 					dispose();
-					account.withdrawMoney(50);
+					account.withdrawMoney(50, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -181,7 +188,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(100)) {
 					dispose();
-					account.withdrawMoney(100);
+					account.withdrawMoney(100, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -198,7 +205,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(500)) {
 					dispose();
-					account.withdrawMoney(500);
+					account.withdrawMoney(500, textDescription.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}
@@ -231,7 +238,7 @@ public class WithdrawScreen extends JFrame {
 					Double val = Double.valueOf(textEnterAmount.getText());
 					if (account.withdrawalIsPossible(val)) {
 						dispose();
-						account.withdrawMoney(val);
+						account.withdrawMoney(val, textDescription.getText());
 						LoginScreen frame = new LoginScreen(account);
 						frame.setVisible(true);
 					}

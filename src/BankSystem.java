@@ -30,8 +30,8 @@ public class BankSystem {
 	}
 	
 	//login to accounts
-	public Account loginToChecking(int num, String key) {
-		for (Account account:checkingAccounts) {
+	public CheckingAccount loginToChecking(int num, String key) {
+		for (CheckingAccount account:checkingAccounts) {
 			if (account.getNumber() == num) {
 				if (key.equals(account.getKey())) {
 					return account;
@@ -41,8 +41,8 @@ public class BankSystem {
 		return null;
 	}
 	
-	public Account loginToSavings(int num, String key) {
-		for (Account account:savingsAccounts) {
+	public SavingsAccount loginToSavings(int num, String key) {
+		for (SavingsAccount account:savingsAccounts) {
 			if (account.getNumber() == num) {
 				if (key.equals(account.getKey())) {
 					return account;

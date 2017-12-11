@@ -43,6 +43,13 @@ public class DepositScreen extends JFrame {
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginScreen frame = new LoginScreen(account);
+				frame.setVisible(true);
+			}
+		});
 		panelUpper.add(btnBack);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(85);
@@ -90,7 +97,7 @@ public class DepositScreen extends JFrame {
 		button1Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(1);
+				account.depositMoney(1, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -101,7 +108,7 @@ public class DepositScreen extends JFrame {
 		button2Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(2);
+				account.depositMoney(2, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -112,7 +119,7 @@ public class DepositScreen extends JFrame {
 		button5Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(5);
+				account.depositMoney(5, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -123,7 +130,7 @@ public class DepositScreen extends JFrame {
 		button10Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(10);
+				account.depositMoney(10, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -134,7 +141,7 @@ public class DepositScreen extends JFrame {
 		button20Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(20);
+				account.depositMoney(20, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -145,7 +152,7 @@ public class DepositScreen extends JFrame {
 		button50Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(50);
+				account.depositMoney(50, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -156,7 +163,7 @@ public class DepositScreen extends JFrame {
 		button100Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(100);
+				account.depositMoney(100, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -167,7 +174,7 @@ public class DepositScreen extends JFrame {
 		button500Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(500);
+				account.depositMoney(500, descriptionField.getText());
 				LoginScreen frame = new LoginScreen(account);
 				frame.setVisible(true);
 			}
@@ -196,7 +203,7 @@ public class DepositScreen extends JFrame {
 				Double val = Double.valueOf(amountField.getText());
 				if (account.depositIsPossible(val)) {
 					dispose();
-					account.depositMoney(val);
+					account.depositMoney(val, descriptionField.getText());
 					LoginScreen frame = new LoginScreen(account);
 					frame.setVisible(true);
 				}

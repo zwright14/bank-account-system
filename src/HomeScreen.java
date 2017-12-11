@@ -59,10 +59,10 @@ public class HomeScreen extends JFrame {
 				int num = Integer.parseInt(accountNum.getText());
 				String password = new String(accountKey.getPassword());
 				if (bank.checkingAccountExists(num, password)) {
-				dispose();
-				Account account = bank.loginToChecking(num, password);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+					dispose();
+					CheckingAccount account = bank.loginToChecking(num, password);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "That account number and password don't exist in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -79,10 +79,10 @@ public class HomeScreen extends JFrame {
 				int num = Integer.parseInt(accountNum.getText());
 				String password = new String(accountKey.getPassword());
 				if (bank.savingsAccountExist(num, password)) {
-				dispose();
-				Account account = bank.loginToSavings(num, password);
-				LoginScreen frame = new LoginScreen(account);
-				frame.setVisible(true);
+					dispose();
+					SavingsAccount account = bank.loginToSavings(num, password);
+					LoginScreen frame = new LoginScreen(account);
+					frame.setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "That account number and password don't exist in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);

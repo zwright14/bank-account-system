@@ -56,15 +56,21 @@ public abstract class Account {
 	}
 	
 	//Transactions
-	public void withdrawMoney(double withdrawal) {
+	public void withdrawMoney(double withdrawal, String description) {
+		if (description.isEmpty()) {
+			description = "Withdrew Money";
+		}
 		balance = (balance*1000 - withdrawal*1000)/1000;
-		Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
+		Transaction withdrawalTransaction = new Transaction(withdrawal, description);
 		this.addTransaction(withdrawalTransaction);
 		}
 	
-	public void depositMoney(double deposit) {
+	public void depositMoney(double deposit, String description) {
+		if (description.isEmpty()) {
+			description = "Deposited Money";
+		}
 		balance += deposit;
-		Transaction depositTransaction = new Transaction(deposit, "Deposited Money");
+		Transaction depositTransaction = new Transaction(deposit, description);
 		this.addTransaction(depositTransaction);
 	}
 
