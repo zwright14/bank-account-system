@@ -5,7 +5,7 @@ public class SavingsAccount extends Account {
 	
 	public SavingsAccount(int num, String name, String key) {
 		super(num, name, key);
-		withdrawLimit=6;
+		withdrawLimit = 6;
 	}
 	
 	public int getWithdrawLimit() {

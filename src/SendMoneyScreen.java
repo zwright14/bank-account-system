@@ -19,14 +19,14 @@ import javax.swing.Box;
 public class SendMoneyScreen extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField accountNumSent;
 	private JTextField textField_1;
 	private Account account;
 	private JTextField textField_2;
 	/**
 	 * Create the frame.
 	 */
-	public SendMoneyScreen(CheckingAccount account) {
+	public SendMoneyScreen(CheckingAccount account, BankSystem bank) {
 		this.account = account;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -45,7 +45,7 @@ public class SendMoneyScreen extends JFrame {
 		btnBackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -72,12 +72,10 @@ public class SendMoneyScreen extends JFrame {
 		lblAccountToSend.setBounds(30, 6, 144, 25);
 		panelCenter.add(lblAccountToSend);
 		
-		textField = new JTextField();
-		textField.setBounds(174, 5, 231, 26);
-		panelCenter.add(textField);
-		textField.setColumns(10);
-		
-		//Account otherAccount
+		accountNumSent = new JTextField();
+		accountNumSent.setBounds(174, 5, 231, 26);
+		panelCenter.add(accountNumSent);
+		accountNumSent.setColumns(10);
 		
 		JLabel lblDescription = new JLabel("Description: ");
 		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -89,7 +87,7 @@ public class SendMoneyScreen extends JFrame {
 		textField_1.setBounds(174, 38, 231, 26);
 		panelCenter.add(textField_1);
 		
-		JLabel labelBalance = new JLabel("Current Balance: 0.0");
+		JLabel labelBalance = new JLabel("Current Balance: " + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 79, 374, 16);
 		panelCenter.add(labelBalance);
@@ -102,14 +100,16 @@ public class SendMoneyScreen extends JFrame {
 		panelCenter.add(buttonPanel);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		/*JButton buttonOneDollar = new JButton("$1");
+		JButton buttonOneDollar = new JButton("$1");
 		buttonOneDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					dispose();
-					account.sendCheck(1, account);
-					LoginScreen frame = new LoginScreen(account);
-					frame.setVisible(true);
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						dispose();
+						//account.sendCheck(1, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -117,7 +117,7 @@ public class SendMoneyScreen extends JFrame {
 				}
 			}
 		});
-		buttonPanel.add(buttonOneDollar);*/
+		buttonPanel.add(buttonOneDollar);
 		
 		JButton button = new JButton("$2");
 		buttonPanel.add(button);

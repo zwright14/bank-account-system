@@ -23,12 +23,14 @@ public class DepositScreen extends JFrame {
 	private Account account;
 	private JTextField descriptionField;
 	private JTextField amountField;
+	private BankSystem bank;
 
 	/**
 	 * Create the frame.
 	 */
-	public DepositScreen(Account account) {
+	public DepositScreen(Account account, BankSystem bank) {
 		this.account = account;
+		this.bank = bank;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -46,7 +48,7 @@ public class DepositScreen extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -98,7 +100,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(1, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -109,7 +111,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(2, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -120,7 +122,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(5, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -131,7 +133,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(10, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -142,7 +144,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(20, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -153,7 +155,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(50, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -164,7 +166,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(100, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -175,7 +177,7 @@ public class DepositScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.depositMoney(500, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -204,7 +206,7 @@ public class DepositScreen extends JFrame {
 				if (account.depositIsPossible(val)) {
 					dispose();
 					account.depositMoney(val, descriptionField.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {

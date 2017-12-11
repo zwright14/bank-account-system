@@ -22,8 +22,9 @@ public class WithdrawScreen extends JFrame {
 	private JTextField textDescription;
 	private JTextField textEnterAmount;
 	
-	public WithdrawScreen(Account account) {
+	public WithdrawScreen(Account account, BankSystem bank) {
 		this.account = account;
+		this.bank = bank;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -41,7 +42,7 @@ public class WithdrawScreen extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -93,7 +94,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(1)) {
 					dispose();
 					account.withdrawMoney(1, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -110,7 +111,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(2)) {
 					dispose();
 					account.withdrawMoney(2, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -127,7 +128,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(5)) {
 					dispose();
 					account.withdrawMoney(5, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -143,7 +144,7 @@ public class WithdrawScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				account.withdrawMoney(10, textDescription.getText());
-				LoginScreen frame = new LoginScreen(account);
+				LoginScreen frame = new LoginScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -155,7 +156,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(20)) {
 					dispose();
 					account.withdrawMoney(20, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -172,7 +173,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(50)) {
 					dispose();
 					account.withdrawMoney(50, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -189,7 +190,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(100)) {
 					dispose();
 					account.withdrawMoney(100, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -206,7 +207,7 @@ public class WithdrawScreen extends JFrame {
 				if (account.withdrawalIsPossible(500)) {
 					dispose();
 					account.withdrawMoney(500, textDescription.getText());
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -239,7 +240,7 @@ public class WithdrawScreen extends JFrame {
 					if (account.withdrawalIsPossible(val)) {
 						dispose();
 						account.withdrawMoney(val, textDescription.getText());
-						LoginScreen frame = new LoginScreen(account);
+						LoginScreen frame = new LoginScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {

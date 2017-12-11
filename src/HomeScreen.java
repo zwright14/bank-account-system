@@ -61,7 +61,7 @@ public class HomeScreen extends JFrame {
 				if (bank.checkingAccountExists(num, password)) {
 					dispose();
 					CheckingAccount account = bank.loginToChecking(num, password);
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -81,7 +81,7 @@ public class HomeScreen extends JFrame {
 				if (bank.savingsAccountExist(num, password)) {
 					dispose();
 					SavingsAccount account = bank.loginToSavings(num, password);
-					LoginScreen frame = new LoginScreen(account);
+					LoginScreen frame = new LoginScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {

@@ -53,6 +53,20 @@ public class BankSystem {
 	}
 
 	//check for accounts
+	public boolean doesAccountExist(int accountNum) {
+		for (Account account:savingsAccounts) {
+			if (account.getNumber() == accountNum) {
+				return true;
+			}
+		}
+		for (Account account:checkingAccounts) {
+			if (account.getNumber() == accountNum) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean savingsAccountExist(int num, String key) {
 		for (Account account:savingsAccounts) {
 			if (account.getNumber() == num) {
@@ -74,6 +88,12 @@ public class BankSystem {
 		}
 		return false;
 	}
+	
+	/*public Account findOtherAccount(int num) {
+		if (doesAccountExist(num)) {
+			Account other = Account(num); 
+		}
+	}*/
 	
 }
 	

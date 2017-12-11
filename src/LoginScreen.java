@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 public class LoginScreen extends JFrame {
 
@@ -24,8 +23,9 @@ public class LoginScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginScreen(Account account) {
+	public LoginScreen(Account account, BankSystem bank) {
 		this.account = account;
+		this.bank = bank;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -64,7 +64,7 @@ public class LoginScreen extends JFrame {
 		btnWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					dispose();
-					WithdrawScreen frame = new WithdrawScreen(account);
+					WithdrawScreen frame = new WithdrawScreen(account, bank);
 					frame.setVisible(true);
 			}
 		});
@@ -75,39 +75,39 @@ public class LoginScreen extends JFrame {
 		btnDeposit.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 				dispose();
-				DepositScreen frame = new DepositScreen(account);
+				DepositScreen frame = new DepositScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
 		
 		JButton btnPayBill = new JButton("Pay Bill");
 		btnPayBill.setBounds(56, 159, 117, 29);
+		contentPane.add(btnPayBill);
 		btnPayBill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (bank.checkingAccounts.contains(account)) {
+				try {
+					PayBillScreen frame = new PayBillScreen((CheckingAccount) account, bank);
 					dispose();
-					//PayBillScreen frame = new PayBillScreen(account);
-					//frame.setVisible(true);
+					frame.setVisible(true);
 				}
-				else {
+				catch(ClassCastException exc) {
 					JOptionPane.showMessageDialog(null, "This action cannot be performed for Savings Account", "Error", JOptionPane.ERROR_MESSAGE);
-					System.out.println("this isnt working");
 				}
 			}
 		});
-		contentPane.add(btnPayBill);
+		
 		
 		JButton btnSendMoney = new JButton("Send Money");
 		btnSendMoney.setBounds(56, 200, 117, 29);
+		
 		btnSendMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (bank.checkingAccounts.contains(account)) {
+				try {
+					SendMoneyScreen frame = new SendMoneyScreen((CheckingAccount) account, bank);
 					dispose();
-					//SendMoneyScreen frame = new SendMoneyScreen(account);
-					//frame.setVisible(true);
+					frame.setVisible(true);
 				}
-				else {
-					//this doesnt work and idk why
+				catch(ClassCastException exc) {
 					JOptionPane.showMessageDialog(null, "This action cannot be performed for Savings Account", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -125,20 +125,15 @@ public class LoginScreen extends JFrame {
 		});
 		contentPane.add(btnLogout);
 		
+		//i think we should remove this...it doesnt work
 		JButton LimitResetbutton = new JButton("Reset Limit");
 		LimitResetbutton.setBounds(132, 241, 95, 29);
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (bank.savingsAccounts.contains(account)) {
-				//SavingsAccount saving = SavingsAccount(account.getNumber(), account.getName(), account.getKey());
-				//account.resetWithdrawalLimit();
-				}
-				else {
-					//this doesnt work and idk why
-					JOptionPane.showMessageDialog(null, "This action cannot be performed for Savings Account", "Error", JOptionPane.ERROR_MESSAGE);
-				}
+			dispose();
 			}
-			});
+		});
 		contentPane.add(LimitResetbutton);
+		
 	}
 }

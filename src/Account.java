@@ -84,7 +84,7 @@ public abstract class Account {
 	}
 	
 	public boolean depositIsPossible(double deposit) {
-		if (deposit>0 && (deposit*100)%1==0) {
+		if (deposit>0 && ((deposit*100)%1==0)) {
 			return true;
 		}
 		else {
