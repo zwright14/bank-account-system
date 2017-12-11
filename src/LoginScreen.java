@@ -99,7 +99,6 @@ public class LoginScreen extends JFrame {
 		
 		JButton btnSendMoney = new JButton("Send Money");
 		btnSendMoney.setBounds(56, 200, 117, 29);
-		
 		btnSendMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -125,12 +124,16 @@ public class LoginScreen extends JFrame {
 		});
 		contentPane.add(btnLogout);
 		
-		//i think we should remove this...it doesnt work
 		JButton LimitResetbutton = new JButton("Reset Limit");
 		LimitResetbutton.setBounds(132, 241, 95, 29);
-		btnLogout.addActionListener(new ActionListener() {
+		LimitResetbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			dispose();
+				try {
+					((SavingsAccount) account).resetWithdrawalLimit();
+				}
+				catch(ClassCastException exc) {
+					JOptionPane.showMessageDialog(null, "This action cannot be performed for Checking Account", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		contentPane.add(LimitResetbutton);
