@@ -70,14 +70,14 @@ public class CreateAccountScreen extends JFrame {
 					//call BankSystem to create a new savings account to store.
 					bank.createSavingsAccount(accountName.getText(), accountKey.getText());
 					dispose();
-					HomeScreen frame = new HomeScreen(bank);
+					LoginScreen frame = new LoginScreen(bank);
 					frame.setVisible(true);		
 				}
 				else {
 					//call BankSystem to create a new checking account to store.
 					bank.createCheckingAccount(accountName.getText(), accountKey.getText());
 					dispose();
-					HomeScreen frame = new HomeScreen(bank);
+					LoginScreen frame = new LoginScreen(bank);
 					frame.setVisible(true);		
 				}
 			}
@@ -90,7 +90,7 @@ public class CreateAccountScreen extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					dispose(); //dumps the frame
-					HomeScreen frame = new HomeScreen(bank);
+					LoginScreen frame = new LoginScreen(bank);
 					frame.setVisible(true);
 				}
 		});

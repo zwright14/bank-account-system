@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Component;
 import java.awt.FlowLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,27 +9,25 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Component;
-import javax.swing.Box;
 
-public class DepositScreen extends JFrame {
-	
+public class WithdrawScreen extends JFrame {
+
 	//initialize private variables
 	private JPanel contentPane;
-	private Account account;
-	private JTextField descriptionField;
-	private JTextField amountField;
 	private BankSystem bank;
-
+	private Account account;
+	private JTextField textDescription;
+	private JTextField textEnterAmount;
+	
 	/**
 	 * Create the frame
 	 * Takes the account that is logged in and the BankSystem
 	 */
-	public DepositScreen(Account account, BankSystem bank) {
+	public WithdrawScreen(Account account, BankSystem bank) {
 		//init account and bank
 		this.account = account;
 		this.bank = bank;
@@ -45,31 +42,32 @@ public class DepositScreen extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		/**
-		 * Upper Panel of GUI - Labels and a back button (and separation struts) 
+		 * Upper Panel of GUI 
+		 * Labels and a back button
+		 * Similar to other Screens, googled Strut's for better UI. 
 		 **/
 		JPanel panelUpper = new JPanel();
 		contentPane.add(panelUpper, BorderLayout.NORTH);
 		
-		//create back button that returns to previous screen 
+		//create back button with action listener to return to previous screen
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); //dump current screen
-				LoginScreen frame = new LoginScreen(account, bank);
+				dispose();
+				HomeScreen frame = new HomeScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
 		panelUpper.add(btnBack);
 		
-		//couldn't figure out how to correctly place items, googled this
+		//googled for better UI
 		Component horizontalStrut_1 = Box.createHorizontalStrut(85);
 		panelUpper.add(horizontalStrut_1);
 		
-		JLabel lblDepositMoney = new JLabel("Deposit Money");
+		JLabel lblDepositMoney = new JLabel("Withdraw Money");
 		panelUpper.add(lblDepositMoney);
 		
-		//couldn't figure out how to correctly place items, googled this
-		Component horizontalStrut = Box.createHorizontalStrut(165);
+		Component horizontalStrut = Box.createHorizontalStrut(155);
 		panelUpper.add(horizontalStrut);
 		
 		
@@ -80,32 +78,31 @@ public class DepositScreen extends JFrame {
 		 */
 		JPanel panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
-		panelCenter.setLayout(null); //set to null because other panel is inside of it (looked better setting bounds)
+		panelCenter.setLayout(null);
 		
 		JLabel lblDescription = new JLabel("Description: ");
 		lblDescription.setBounds(30, 34, 81, 16);
 		panelCenter.add(lblDescription);
 		
 		//Goes with Description
-		descriptionField = new JTextField();
-		descriptionField.setBounds(118, 34, 286, 61);
-		panelCenter.add(descriptionField);
-		descriptionField.setColumns(10);
+		textDescription = new JTextField();
+		textDescription.setBounds(118, 34, 286, 61);
+		panelCenter.add(textDescription);
+		textDescription.setColumns(10);
 		
-		//uses current account
+		//displays current balance within label
 		JLabel labelBalance = new JLabel("Current Balance: $" + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 6, 374, 16);
 		panelCenter.add(labelBalance);
-		
 		
 		/**
 		 * Button Panel within Center Panel of GUI
 		 * Creates a panel with flowLayout for the buttons to be evenly spaced and organized
 		 * One after the other
 		 * Like an ATM, quick amounts to deposit
-		 * All buttons perform same action with different amounts
-		 * Design Decision to go back to previous screen after Deposit 
+		 * All buttons perform same action with different amounts 
+		 * Design Decision to go back to previous screen after Withdrawal
 		 */
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBounds(30, 107, 374, 77);
@@ -116,10 +113,16 @@ public class DepositScreen extends JFrame {
 		JButton button1Dollar = new JButton("$1");
 		button1Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); //design choice to bring back to previous screen after deposit completion
-				account.depositMoney(1, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(1)) {
+					dispose();
+					account.withdrawMoney(1, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button1Dollar);
@@ -127,10 +130,16 @@ public class DepositScreen extends JFrame {
 		JButton button2Dollars = new JButton("$2");
 		button2Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose(); 
-				account.depositMoney(2, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(2)) {
+					dispose();
+					account.withdrawMoney(2, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button2Dollars);
@@ -138,10 +147,16 @@ public class DepositScreen extends JFrame {
 		JButton button5Dollars = new JButton("$5");
 		button5Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.depositMoney(5, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(5)) {
+					dispose();
+					account.withdrawMoney(5, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button5Dollars);
@@ -150,8 +165,8 @@ public class DepositScreen extends JFrame {
 		button10Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				account.depositMoney(10, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
+				account.withdrawMoney(10, textDescription.getText());
+				HomeScreen frame = new HomeScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -160,10 +175,16 @@ public class DepositScreen extends JFrame {
 		JButton button20Dollars = new JButton("$20");
 		button20Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.depositMoney(20, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(20)) {
+					dispose();
+					account.withdrawMoney(20, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button20Dollars);
@@ -171,10 +192,16 @@ public class DepositScreen extends JFrame {
 		JButton button50Dollars = new JButton("$50");
 		button50Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.depositMoney(50, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(50)) {
+					dispose();
+					account.withdrawMoney(50, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button50Dollars);
@@ -182,10 +209,16 @@ public class DepositScreen extends JFrame {
 		JButton button100Dollars = new JButton("$100");
 		button100Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.depositMoney(100, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(100)) {
+					dispose();
+					account.withdrawMoney(100, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button100Dollars);
@@ -193,15 +226,21 @@ public class DepositScreen extends JFrame {
 		JButton button500Dollars = new JButton("$500");
 		button500Dollars.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				account.depositMoney(500, descriptionField.getText());
-				LoginScreen frame = new LoginScreen(account, bank);
-				frame.setVisible(true);
+				if (account.withdrawalIsPossible(500)) {
+					dispose();
+					account.withdrawMoney(500, textDescription.getText());
+					HomeScreen frame = new HomeScreen(account, bank);
+					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
+				}
 			}
 		});
 		buttonPanel.add(button500Dollars);	
 		
-		
+
 		/**
 		 * Lower Panel of GUI
 		 * Add a label and textField to enter in your own deposit amount.
@@ -210,41 +249,37 @@ public class DepositScreen extends JFrame {
 		JPanel panelLower = new JPanel();
 		contentPane.add(panelLower, BorderLayout.SOUTH);
 		
-		JLabel lblEnterAmount = new JLabel("Enter Amount to Deposit:");
+		JLabel lblEnterAmount = new JLabel("Enter Amount to Withdraw:");
 		panelLower.add(lblEnterAmount);
 		
-		amountField = new JTextField();
-		panelLower.add(amountField);
-		amountField.setColumns(10);
-		
+		textEnterAmount = new JTextField();
+		panelLower.add(textEnterAmount);
+		textEnterAmount.setColumns(10);
 		
 		JButton btnEnterButton = new JButton("Enter");
 		btnEnterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//try and catch if the user enters in a non-double #
+				//try and catch if user enters non-double
 				try {
-				Double val = Double.valueOf(amountField.getText());
-				//perform deposit if possible (rounded to 2 decimals)
-				if (account.depositIsPossible(val)) {
-					dispose();
-					account.depositMoney(val, descriptionField.getText());
-					LoginScreen frame = new LoginScreen(account, bank);
-					frame.setVisible(true);
+					Double val = Double.valueOf(textEnterAmount.getText());
+					//perform withdrawal if balance afterwards > 0 and round to 2 decimals. 
+					if (account.withdrawalIsPossible(val)) {
+						dispose();
+						account.withdrawMoney(val, textDescription.getText());
+						HomeScreen frame = new HomeScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "That number entered can't be withdrawn!", "Error", JOptionPane.ERROR_MESSAGE);
+						textEnterAmount.setText("");
+					}
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "The value entered can't be deposited!", "Error", JOptionPane.ERROR_MESSAGE);
-					amountField.setText("");
-				}
-				}
-				catch(NumberFormatException nfe) {
-					JOptionPane.showMessageDialog(null, "The value entered can't be deposited!", "Error", JOptionPane.ERROR_MESSAGE);
-					amountField.setText("");
+				catch (NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "That number entered can't be withdrawn!", "Error", JOptionPane.ERROR_MESSAGE);
+					textEnterAmount.setText("");
 				}
 			}
 		});
 		panelLower.add(btnEnterButton);
-		
-		
-		
 	}
 }

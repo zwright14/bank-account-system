@@ -9,7 +9,7 @@ public class BankInterface {
 		bank.createCheckingAccount("Zach", "Zach"); //Account number 1
 		bank.createSavingsAccount("Romeo", "Romeo"); //Account number 2
 		bank.createCheckingAccount("Nathan", "Nathan"); //Account number 3
-		HomeScreen frame = new HomeScreen(bank);
+		LoginScreen frame = new LoginScreen(bank);
 		frame.setVisible(true);
 		
 	}

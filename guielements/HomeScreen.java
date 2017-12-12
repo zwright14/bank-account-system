@@ -14,7 +14,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginScreen extends JFrame {
+public class HomeScreen extends JFrame {
 
 	private JPanel contentPane;
 	private Account account;
@@ -23,7 +23,7 @@ public class LoginScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginScreen(Account account, BankSystem bank) {
+	public HomeScreen(Account account, BankSystem bank) {
 		this.account = account;
 		this.bank = bank;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,7 +118,7 @@ public class LoginScreen extends JFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				HomeScreen frame = new HomeScreen(bank);
+				LoginScreen frame = new LoginScreen(bank);
 				frame.setVisible(true);
 			}
 		});
