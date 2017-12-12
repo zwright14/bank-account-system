@@ -22,7 +22,7 @@ public class SendMoneyScreen extends JFrame {
 	private JTextField accountNumSent;
 	private JTextField textField_1;
 	private Account account;
-	private JTextField textField_2;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -131,7 +131,7 @@ public class SendMoneyScreen extends JFrame {
 					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
-						account.sendCheck(1, otherAccount);
+						account.sendCheck(2, otherAccount);
 						LoginScreen frame = new LoginScreen(account, bank);
 						frame.setVisible(true);
 					}
@@ -149,23 +149,148 @@ public class SendMoneyScreen extends JFrame {
 		buttonPanel.add(buttonTwoDollar);
 		
 		JButton buttonFiveDollar = new JButton("$5");
-		
+		buttonFiveDollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(5, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
 		buttonPanel.add(buttonFiveDollar);
 		
-		JButton button_2 = new JButton("$10");
-		buttonPanel.add(button_2);
+		JButton buttonTenDollar = new JButton("$10");
+		buttonTenDollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(10, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
+		buttonPanel.add(buttonTenDollar);
 		
-		JButton button_3 = new JButton("$20");
-		buttonPanel.add(button_3);
+		JButton buttonTwentyDollar = new JButton("$20");
+		buttonTwentyDollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(20, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
+		buttonPanel.add(buttonTwentyDollar);
 		
-		JButton button_4 = new JButton("$50");
-		buttonPanel.add(button_4);
+		JButton buttonFiftyDollar = new JButton("$50");
+		buttonFiftyDollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(50, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
+		buttonPanel.add(buttonFiftyDollar);
 		
-		JButton button_5 = new JButton("$100");
-		buttonPanel.add(button_5);
+		JButton button100Dollar = new JButton("$100");
+		button100Dollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(100, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
+		buttonPanel.add(button100Dollar);
 		
-		JButton button_7 = new JButton("$500");
-		buttonPanel.add(button_7);
+		JButton button500Dollar = new JButton("$500");
+		button500Dollar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(500, otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
+		buttonPanel.add(button500Dollar);
 		
 		/**
 		 * Lower Panel of GUI
@@ -181,6 +306,27 @@ public class SendMoneyScreen extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnSendMoney = new JButton("Enter");
+		btnSendMoney.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (account.withdrawalIsPossible(1)) {
+					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
+						dispose();
+						account.sendCheck(Double.valueOf(textField_1.getText()), otherAccount);
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Account Doesn't Exist!", "Error", JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Funds aren't available to withdraw!", "Error", JOptionPane.ERROR_MESSAGE);
+					textField_1.setText("");
+				}
+			}
+		});
 		panelLower.add(btnSendMoney);
 
 	}
