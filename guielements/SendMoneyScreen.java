@@ -45,7 +45,7 @@ public class SendMoneyScreen extends JFrame {
 		btnBackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen frame = new LoginScreen(account, bank);
+				HomeScreen frame = new HomeScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -108,7 +108,7 @@ public class SendMoneyScreen extends JFrame {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(1, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -132,7 +132,7 @@ public class SendMoneyScreen extends JFrame {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(2, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -152,11 +152,11 @@ public class SendMoneyScreen extends JFrame {
 		buttonFiveDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(5, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -176,11 +176,11 @@ public class SendMoneyScreen extends JFrame {
 		buttonTenDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(10, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -200,11 +200,11 @@ public class SendMoneyScreen extends JFrame {
 		buttonTwentyDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(20, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -224,11 +224,11 @@ public class SendMoneyScreen extends JFrame {
 		buttonFiftyDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(50, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -248,11 +248,11 @@ public class SendMoneyScreen extends JFrame {
 		button100Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(100, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -272,11 +272,11 @@ public class SendMoneyScreen extends JFrame {
 		button500Dollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(500, otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {
@@ -309,11 +309,11 @@ public class SendMoneyScreen extends JFrame {
 		btnSendMoney.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(Double.valueOf(textField_1.getText()), otherAccount);
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {

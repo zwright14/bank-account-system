@@ -9,14 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-public class HomeScreen extends JFrame {
+public class LoginScreen extends JFrame {
 
 	private BankSystem bank;
 
 	/**
 	 * Create the frame.
 	 */
-	public HomeScreen(BankSystem bank) {
+	public LoginScreen(BankSystem bank) {
 		this.bank = bank;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -62,7 +62,7 @@ public class HomeScreen extends JFrame {
 					Account account = bank.findAccount(num);
 					if (account.passwordIsCorrect(password)) {
 						dispose();
-						LoginScreen frame = new LoginScreen(account, bank);
+						HomeScreen frame = new HomeScreen(account, bank);
 						frame.setVisible(true);
 					}
 					else {

@@ -32,7 +32,7 @@ public class PayBillScreen extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginScreen frame = new LoginScreen(account, bank);
+				HomeScreen frame = new HomeScreen(account, bank);
 				frame.setVisible(true);
 			}
 		});
@@ -45,7 +45,7 @@ public class PayBillScreen extends JFrame {
 				if (account.withdrawalIsPossible(150)) {
 					dispose();
 					account.payBill("Water Bill");
-					LoginScreen frame = new LoginScreen(account, bank);
+					HomeScreen frame = new HomeScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -62,7 +62,7 @@ public class PayBillScreen extends JFrame {
 				if (account.withdrawalIsPossible(250)) {
 					dispose();
 					account.payBill("Electric Bill");
-					LoginScreen frame = new LoginScreen(account, bank);
+					HomeScreen frame = new HomeScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -79,7 +79,7 @@ public class PayBillScreen extends JFrame {
 				if (account.withdrawalIsPossible(1000)) {
 					dispose();
 					account.payBill("Mortgage");
-					LoginScreen frame = new LoginScreen(account, bank);
+					HomeScreen frame = new HomeScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -96,7 +96,7 @@ public class PayBillScreen extends JFrame {
 				if (account.withdrawalIsPossible(1750)) {
 					dispose();
 					account.payBill("Credit Card");
-					LoginScreen frame = new LoginScreen(account, bank);
+					HomeScreen frame = new HomeScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -113,7 +113,7 @@ public class PayBillScreen extends JFrame {
 				if (account.withdrawalIsPossible(75)) {
 					dispose();
 					account.payBill("Phone Bill");
-					LoginScreen frame = new LoginScreen(account, bank);
+					HomeScreen frame = new HomeScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
@@ -130,7 +130,7 @@ public class PayBillScreen extends JFrame {
 				if (account.withdrawalIsPossible(125)) {
 					dispose();
 					account.payBill("Groceries");
-					LoginScreen frame = new LoginScreen(account, bank);
+					HomeScreen frame = new HomeScreen(account, bank);
 					frame.setVisible(true);
 				}
 				else {
