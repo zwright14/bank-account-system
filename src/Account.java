@@ -6,13 +6,14 @@ public abstract class Account {
 	private String accountName;
 	private String accountKey;
 	private ArrayList<Transaction> transactionLog;
-	protected float balance;
+	private double balance;
 	
 	
 	public Account(int num, String name, String key) {
 		accountNumber = num;
 		accountName = name;
 		accountKey = key;
+		transactionLog = new ArrayList<Transaction>();
 		balance = 0;
 	}
 	
@@ -29,7 +30,7 @@ public abstract class Account {
 		return accountKey;
 	}
 	
-	public float getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 	
@@ -51,26 +52,43 @@ public abstract class Account {
 	}
 	
 	public void addTransaction(Transaction log) {
-		transactionLog.add(log);
+		transactionLog.add(0,log);
 	}
 	
 	//Transactions
-	public void withdrawMoney(float withdrawal) {
-		if (balance < withdrawal) {
-			System.out.println("ERROR. Insufficient funds to complete withdrawal.");
-		}	
-		if (balance >= withdrawal) {
-			balance -= withdrawal;
-			Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
-			this.addTransaction(withdrawalTransaction);
+	public void withdrawMoney(double withdrawal, String description) {
+		if (description.isEmpty()) {
+			description = "Withdrew Money";
 		}
-
-	}
+		balance = (balance*1000 - withdrawal*1000)/1000;
+		Transaction withdrawalTransaction = new Transaction(withdrawal, description);
+		this.addTransaction(withdrawalTransaction);
+		}
 	
-	public void depositMoney(float deposit) {
+	public void depositMoney(double deposit, String description) {
+		if (description.isEmpty()) {
+			description = "Deposited Money";
+		}
 		balance += deposit;
-		Transaction depositTransaction = new Transaction(deposit, "Deposited Money");
+		Transaction depositTransaction = new Transaction(deposit, description);
 		this.addTransaction(depositTransaction);
 	}
 
+	public boolean withdrawalIsPossible(double withdrawal) {
+		if (balance >= withdrawal && withdrawal > 0 && (withdrawal*100)%1==0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean depositIsPossible(double deposit) {
+		if (deposit>0 && ((deposit*100)%1==0)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

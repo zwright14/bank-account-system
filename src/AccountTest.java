@@ -24,16 +24,16 @@ class AccountTest {
 	@Test
 	void testBalanceChangingMethods() {
 		for (int i=0; i<100; i++) {
-			myCheckingAccount.depositMoney(i+1);
+			myCheckingAccount.depositMoney(i+1, "");
 			assertEquals(myCheckingAccount.getBalance(), 2*i+1);
-			myCheckingAccount.withdrawMoney(i);
+			myCheckingAccount.withdrawMoney(i, "");
 			assertEquals(myCheckingAccount.getBalance(), i+1);
 		}
 		
 		for(int i=1; i<=7; i++) {
-			mySavingsAccount.depositMoney(i);
+			mySavingsAccount.depositMoney(i,"");
 			assertEquals(mySavingsAccount.getBalance(), i);
-			mySavingsAccount.withdrawMoney(i);
+			mySavingsAccount.withdrawMoney(i,"");
 			if (i!=7) {
 				assertEquals(mySavingsAccount.getBalance(), 0);
 			}
@@ -46,7 +46,7 @@ class AccountTest {
 	
 	@Test
 	void testSendCheckMethod() {
-		myCheckingAccount.depositMoney(1000);
+		myCheckingAccount.depositMoney(1000,"");
 		myCheckingAccount.sendCheck(500, otherCheckingAccount);
 		assertEquals(otherCheckingAccount.getBalance(), 500);
 		assertEquals(myCheckingAccount.getBalance(), 500);

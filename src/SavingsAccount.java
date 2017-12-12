@@ -5,27 +5,30 @@ public class SavingsAccount extends Account {
 	
 	public SavingsAccount(int num, String name, String key) {
 		super(num, name, key);
-		withdrawLimit=6;
+		withdrawLimit = 6;
 	}
 	
 	public int getWithdrawLimit() {
 		return withdrawLimit; 
 	}
 	
-	public void withdrawMoney(float withdrawal) {
-		if (withdrawLimit > 0) {
-			balance -= withdrawal;
-			withdrawLimit -= 1;
-			Transaction withdrawalTransaction = new Transaction(withdrawal, "Withdrew Money");
-			this.addTransaction(withdrawalTransaction);
+	public void resetWithdrawalLimit() {
+		withdrawLimit = 6;
+	}
+	
+	public boolean withdrawalIsPossible(double withdrawal) {
+		if (withdrawLimit>0) {
+			return super.withdrawalIsPossible(withdrawal);
 		}
-		if (withdrawLimit == 0) {
-			System.out.println("ERROR: No more withdrawals allowed.");
-			return null;
+		else {
+			return false;
 		}
 	}
 	
-	public void resetLimit() {
-		withdrawLimit = 6;
+	public void withdrawMoney(double withdrawal, String description) {
+		if (description.isEmpty()) {
+			super.withdrawMoney(withdrawal, description);
+			withdrawLimit -= 1;
+		}
 	}
 }

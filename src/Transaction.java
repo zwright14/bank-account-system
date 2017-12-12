@@ -1,20 +1,30 @@
 
 public class Transaction {
 	
-	private float value;
+	private double value;
 	private String description;
 	
-	public Transaction(float val, String log) {
+	public Transaction(double val, String log) {
 		value = val;
 		description = log;
 	}
 
 	//Getter Methods
-	public float getValue() {
+	public double getValue() {
 		return value;
 	}
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	//Print Transaction
+	public String toString() {
+		if (value>=0) {
+			return "$" + value + "  " + description;
+		}
+		else {
+			return "-$" + Math.abs(value) + description;
+		}
 	}
 }

@@ -11,6 +11,12 @@ public class BankSystem {
 		savingsAccounts = new ArrayList<SavingsAccount>();
 	}
 	
+	//getters
+	public int getAccountNum() {
+		return accountNum;
+	}
+	
+	//create accounts
 	public void createSavingsAccount(String name, String key) {
 		SavingsAccount newAccount = new SavingsAccount(accountNum, name, key);
 		savingsAccounts.add(newAccount);
@@ -23,39 +29,79 @@ public class BankSystem {
 		accountNum++;
 	}
 	
-	public Account loginToChecking(int num, String key) {
-		for (Account account:checkingAccounts) {
+	//login to accounts
+	public CheckingAccount loginToChecking(int num, String key) {
+		for (CheckingAccount account:checkingAccounts) {
 			if (account.getNumber() == num) {
 				if (key.equals(account.getKey())) {
 					return account;
 				}
-				else {
-					System.out.println("ERROR. Incorrect Password.");
-					return null;
-				}
 			}
-			else {
-				System.out.println("ERROR. Account number does not exist.");
-				return null;
 		}
 		return null;
 	}
 	
-	public Account loginToSavings(int num, String key) {
-		for (Account account:savingsAccounts) {
+	public SavingsAccount loginToSavings(int num, String key) {
+		for (SavingsAccount account:savingsAccounts) {
 			if (account.getNumber() == num) {
 				if (key.equals(account.getKey())) {
 					return account;
 				}
-				else {
-					System.out.println("ERROR. Incorrect Password.");
-					return null;
-				}
 			}
-			else {
-				System.out.println("ERROR. Account number does not exist.");
-				return null;
 		}
 		return null;
 	}
+
+	//check for accounts
+	public boolean doesAccountExist(int accountNum) {
+		for (Account account:savingsAccounts) {
+			if (account.getNumber() == accountNum) {
+				return true;
+			}
+		}
+		for (Account account:checkingAccounts) {
+			if (account.getNumber() == accountNum) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean savingsAccountExist(int num, String key) {
+		for (Account account:savingsAccounts) {
+			if (account.getNumber() == num) {
+				if (key.equals(account.getKey())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkingAccountExists(int num, String key) {
+		for (Account account:checkingAccounts) {
+			if (account.getNumber() == num) {
+				if (key.equals(account.getKey())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public Account findAccount(int num) {
+		for (Account account:checkingAccounts) {
+			if (account.getNumber() == num) {
+				return account;
+			}
+		} for (Account account:savingsAccounts) {
+			if (account.getNumber() == num) {
+				return account;
+			}
+		}
+		return null;
+	}
+	
+		
 }
+	
