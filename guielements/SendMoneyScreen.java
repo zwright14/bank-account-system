@@ -77,16 +77,6 @@ public class SendMoneyScreen extends JFrame {
 		panelCenter.add(accountNumSent);
 		accountNumSent.setColumns(10);
 		
-		JLabel lblDescription = new JLabel("Description: ");
-		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDescription.setBounds(30, 43, 144, 16);
-		panelCenter.add(lblDescription);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(174, 38, 231, 26);
-		panelCenter.add(textField_1);
-		
 		JLabel labelBalance = new JLabel("Current Balance: " + account.getBalance());
 		labelBalance.setHorizontalAlignment(SwingConstants.CENTER);
 		labelBalance.setBounds(30, 79, 374, 16);
