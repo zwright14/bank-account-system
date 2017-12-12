@@ -1,13 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 
 public class CreateAccountScreen extends JFrame {
 	
@@ -66,19 +60,23 @@ public class CreateAccountScreen extends JFrame {
 		btnCreateAccount.setActionCommand("Create"); //need action listener to do things
 		btnCreateAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (accountType.getSelectedItem().equals("Savings")) {
-					//call BankSystem to create a new savings account to store.
-					bank.createSavingsAccount(accountName.getText(), accountKey.getText());
-					dispose();
-					LoginScreen frame = new LoginScreen(bank);
-					frame.setVisible(true);		
+				if (accountName.getText().equals("") || accountKey.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "You need to input a name and a password!", "Error", JOptionPane.ERROR_MESSAGE);
+					accountName.setText("");
+					accountKey.setText("");
 				}
 				else {
-					//call BankSystem to create a new checking account to store.
-					bank.createCheckingAccount(accountName.getText(), accountKey.getText());
-					dispose();
-					LoginScreen frame = new LoginScreen(bank);
-					frame.setVisible(true);		
+					if (accountType.getSelectedItem().equals("Savings")) {
+						//call BankSystem to create a new savings account to store.
+						bank.createSavingsAccount(accountName.getText(), accountKey.getText());
+					}
+					else {
+						//call BankSystem to create a new checking account to store.
+						bank.createCheckingAccount(accountName.getText(), accountKey.getText());
+					}
+				dispose();
+				LoginScreen frame = new LoginScreen(bank);
+				frame.setVisible(true);		
 				}
 			}
 		});
