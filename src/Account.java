@@ -55,6 +55,16 @@ public abstract class Account {
 		transactionLog.add(0,log);
 	}
 	
+	// Login Method
+	public boolean passwordIsCorrect(String pass) {
+		if (pass.equals(accountKey)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	//Transactions
 	public void withdrawMoney(double withdrawal, String description) {
 		if (description.isEmpty()) {

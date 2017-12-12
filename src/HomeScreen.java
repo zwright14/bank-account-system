@@ -53,46 +53,32 @@ public class HomeScreen extends JFrame {
 		JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel loginPanel = new JPanel(new GridLayout(1,2));
 		
-		JButton btnCheckingLogin = new JButton("Login To Checking Account");
+		JButton btnCheckingLogin = new JButton("Login To Account");
 		btnCheckingLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int num = Integer.parseInt(accountNum.getText());
 				String password = new String(accountKey.getPassword());
-				if (bank.checkingAccountExists(num, password)) {
-					dispose();
-					CheckingAccount account = bank.loginToChecking(num, password);
-					LoginScreen frame = new LoginScreen(account, bank);
-					frame.setVisible(true);
+				if (bank.accountExists(num)) {
+					Account account = bank.findAccount(num);
+					if (account.passwordIsCorrect(password)) {
+						dispose();
+						LoginScreen frame = new LoginScreen(account, bank);
+						frame.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "That is an invalid password!", "Error", JOptionPane.ERROR_MESSAGE);
+						accountNum.setText("");
+						accountKey.setText("");
+					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "That account number and password don't exist in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "That account number is not in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);
 					accountNum.setText("");
 					accountKey.setText("");
 				}
 			}
 		});
 		loginPanel.add(btnCheckingLogin);
-		
-		JButton btnSavingsLogin = new JButton("Login To Savings Account");
-		btnSavingsLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int num = Integer.parseInt(accountNum.getText());
-				String password = new String(accountKey.getPassword());
-				if (bank.savingsAccountExist(num, password)) {
-					dispose();
-					SavingsAccount account = bank.loginToSavings(num, password);
-					LoginScreen frame = new LoginScreen(account, bank);
-					frame.setVisible(true);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "That account number and password don't exist in the bank system!", "Error", JOptionPane.ERROR_MESSAGE);
-					accountNum.setText("");
-					accountKey.setText("");
-					
-				}
-			}
-		});
-		loginPanel.add(btnSavingsLogin);
 		southPanel.add(loginPanel);
 		
 		getContentPane().add(northPanel, BorderLayout.NORTH);

@@ -104,7 +104,7 @@ public class SendMoneyScreen extends JFrame {
 		buttonOneDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(1, otherAccount);
@@ -128,7 +128,7 @@ public class SendMoneyScreen extends JFrame {
 		buttonTwoDollar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (account.withdrawalIsPossible(1)) {
-					if (bank.doesAccountExist(Integer.valueOf(accountNumSent.getText()))) {
+					if (bank.accountExists(Integer.valueOf(accountNumSent.getText()))) {
 						Account otherAccount = bank.findAccount(Integer.parseInt(accountNumSent.getText()));
 						dispose();
 						account.sendCheck(1, otherAccount);
